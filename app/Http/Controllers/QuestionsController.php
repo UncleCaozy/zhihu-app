@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Question;
 use App\Http\Requests\StoreQuestionRequest;
+use App\Repositories\QuestionRepository;
+
 class QuestionsController extends Controller
 {
     /**
@@ -14,13 +15,19 @@ class QuestionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    protected $questionRepository;
+
+
+
+    public function __construct(QuestionRepository $questionRepository)
     {
         $this->middleware('auth')->except(['index','show']);
+        $this->questionRepository = $questionRepository;
     }
     public function index()
     {
-        //
+        $questions = $this->questionRepository->getQuestionsFeed();
+        return view('questions.index',compact('questions'));
     }
 
     /**
@@ -41,13 +48,13 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        $topics = $this->normalizeTopic($request->get('topics'));
+        $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
         $data = [
             'title'=>$request->get('title'),
             'body'=>$request->get('body'),
             'user_id'=>Auth::id(),
         ];
-        $question = Question::create($data);
+        $question = $this->questionRepository->create($data);
         $question->topics()->attach($topics);
         return redirect()->route('questions.show',[$question->id]);
     }
@@ -60,7 +67,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::where('id',$id)->with('topics')->first();
+        $question = $this->questionRepository->byIdWithTopics($id);
         return view('questions.show',compact('question'));
     }
 
@@ -72,7 +79,11 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)){
+            return view('questions.edit',compact('question'));
+        }
+        return back();
     }
 
     /**
@@ -82,9 +93,16 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreQuestionRequest $request, $id)
     {
-        //
+        $question = $this->questionRepository->byId($id);
+        $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
+        $question->update([
+            'title'=>$request->get('title'),
+            'body'=>$request->get('body'),
+            ]);
+        $question->topics()->sync($topics);
+        return redirect()->route('questions.show',[$question->id]);
     }
 
     /**
@@ -95,17 +113,12 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)){
+            $question->delete();
+            return redirect('/');
+        }
+        abort(403,'Forbidden');
     }
-    public function normalizeTopic(array $topics)
-    {
-        return collect($topics)->map(function ($topic){
-            if(is_numeric($topic)){
-                Topic::find($topic)->increment('questions_count');
-               return (int)$topic;
-            }
-            $newTopic = Topic::create(['name'=>$topic,'questions_count'=>1]);
-            return $newTopic->id;
-        })->toArray();
-    }
+
 }
