@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@include('vendor.ueditor.assets')
+
 @section('content')
+    @include('vendor.ueditor.assets')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
@@ -37,11 +38,10 @@
                         <span>关注者</span>
                     </div>
                     <div class="panel-body text-center">
-                        {{--<a href="/question/{{$question->id}}/follow"--}}
-                           {{--class="btn btn-default {{Auth::user()->followed($question->id) ? 'btn-danger' : 'btn-success'}}">--}}
-                            {{--{{Auth::user()->followed($question->id) ? '取消关注' : '关注问题'}}--}}
-                        {{--</a>--}}
-                        <question-follow-button question="{{$question->id}}" user="{{Auth::id()}}"></question-follow-button>
+                        <a href="/question/{{$question->id}}/follow"
+                           class="btn btn-default {{Auth::user()->followed($question->id) ? 'btn-danger' : 'btn-success'}}">
+                            {{Auth::user()->followed($question->id) ? '取消关注' : '关注问题'}}
+                        </a>
                         <a href="#editor" class="btn btn-primary">撰写答案</a>
                      </div>
                 </div>
