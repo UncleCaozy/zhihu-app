@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreQuestionRequest;
@@ -67,7 +66,7 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = $this->questionRepository->byIdWithTopics($id);
+        $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
         return view('questions.show',compact('question'));
     }
 

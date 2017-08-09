@@ -1,4 +1,4 @@
-.panel-body img {
+.panel-body.content img {
     width:100%;
 }
 
@@ -11,6 +11,7 @@ a.topic {
     display: inline-block;
     white-space: normal;
     cursor: pointer;
+    align:right;
 }
 
 a.topic:hover {
