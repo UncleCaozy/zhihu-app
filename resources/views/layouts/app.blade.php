@@ -4,25 +4,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
     <script src="/js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="/css/font-awesome.css" >
-    <link rel="stylesheet" href="/css/bootstrap.css" >
-    <link rel="stylesheet" href="/css/style.css" >
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-            <!-- CSRF Token -->
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', '知乎') }}</title>
 
-            <!-- Styles -->
+    <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
-            <!-- Scripts -->
+    <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
-        ]); ?>
+        ]); ?>;
+        Laravel.apiToken = "{{Auth::check() ? 'Bearer '.Auth::user()->api_token :'Bearer '}}"
     </script>
 </head>
 <body>
@@ -31,8 +32,9 @@
         <div class="container">
             <div class="navbar-header">
 
-                        <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#app-navbar-collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -46,9 +48,9 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                        <!-- Left Side Of Navbar -->
+                <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                            &nbsp;
+                    &nbsp;
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -59,7 +61,8 @@
                         <li><a href="{{ url('/register') }}">注 册</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
@@ -67,11 +70,12 @@
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
+                            document.getElementById('logout-form').submit();">
                                         退出
                                     </a>
 
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                          style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
                                 </li>
@@ -88,7 +92,7 @@
     @yield('content')
 </div>
 
-            <!-- Scripts -->
+<!-- Scripts -->
 <script src="/js/app.js"></script>
 <script>
     $('#flash-overlay-modal').modal();
