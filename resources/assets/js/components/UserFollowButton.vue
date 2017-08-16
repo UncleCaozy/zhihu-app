@@ -1,6 +1,6 @@
 <template>
     <button
-            class="btn btn-default"
+            class="btn btn-default pull-left"
             v-bind:class="{'btn-success':followed}"
             v-text="text"
             v-on:click="follow"
@@ -22,7 +22,7 @@
         },
         computed:{
             text(){
-                return this.followed ? '取消关注': '关注他'
+                return this.followed ? '取消关注': '十关注他'
             }
         },
         methods:{

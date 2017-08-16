@@ -6,15 +6,24 @@
             <div class="col-md-8 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        {{$question->title}}
                         @foreach($question->topics as $topics)
                             <a class="topic">{{$topics->name}}</a>
                         @endforeach
+                            <br>
+                        <h2><strong>{{$question->title}}</strong></h2>
                     </div>
                     <div class="panel-body content">
                         {!! $question->body !!}
                     </div>
                     <div class="actions">
+                        <button class="btn btn-mini" type="button">
+                            <comments type="question"
+                                          model="{{$question->id}}"
+                                          count="{{$question->comments()->count()}}">
+                            </comments>
+                        </button>
+
+                        <hr>
                         @if(Auth::check() && Auth::user()->owns($question))
                             <span class="edit">
                                 <a href="/questions/{{$question->id}}/edit">
@@ -36,7 +45,7 @@
                         <h2>{{$question->followers_count}}</h2>
                         <span>人关注</span>
                     </div>
-                        <div class="panel-body text-center">
+                        <div class="panel-body">
                             <question-follow-button question="{{$question->id}}"></question-follow-button>
                             <a href="#editor" class="btn btn-primary pull-right">撰写答案</a>
                         </div>
@@ -61,6 +70,10 @@
                                     </h4>
                                     {!!$answer->body!!}
                                 </div>
+                                <comments type="answer"
+                                          model="{{$answer->id}}"
+                                          count="{{$answer->comments()->count()}}">
+                                </comments>
                             </div>
                         @endforeach
                     </div>
@@ -95,14 +108,13 @@
                                     <a href="">
                                         <img width="36" src="{{$answer->user->avatar}}" alt="{{$answer->user->name}}">
                                     </a>
-                                </div>
-                                <div class="media-body">
                                     <h4 class="media-heading">
                                         <a href="">
                                             {{$question->user->name}}
                                         </a>
                                     </h4>
                                 </div>
+
                                 <div class="user-statics">
                                     <div class="statics-item text-center">
                                         <div class="statics-text">问题</div>
@@ -122,7 +134,7 @@
                                     {{--已关注--}}
                                 {{--</a>--}}
                             <user-follow-button user="{{$question->user_id}}"></user-follow-button>
-                                <a href="#editor" class="btn btn-primary pull-right">发送私信</a>
+                                <send-message user="{{$question->user_id}}"></send-message>
                         </div>
                 </div>
             </div>

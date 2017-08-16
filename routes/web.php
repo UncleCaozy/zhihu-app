@@ -27,3 +27,11 @@ Route::get('question/{question}/follow','QuestionFollowController@follow');
 Route::get('question/{question}/unfollow','QuestionFollowController@unfollow');
 
 Route::get('notifications','NotificationsController@index');
+Route::get('notifications/{notification}','NotificationsController@show');
+
+Route::get('avatar','UsersController@avatar');
+Route::post('avatar','UsersController@changeAvatar');
+
+Route::get('inbox','InboxController@index');
+Route::get('inbox/{dialogId}','InboxController@show');
+Route::post('inbox/{dialogId}/store','InboxController@store');

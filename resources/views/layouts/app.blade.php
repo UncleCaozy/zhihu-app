@@ -23,7 +23,13 @@
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>;
-        Laravel.apiToken = "{{Auth::check() ? 'Bearer '.Auth::user()->api_token :'Bearer '}}"
+        Laravel.apiToken = "{{Auth::check() ? 'Bearer '.Auth::user()->api_token :'Bearer '}}";
+        @if(Auth::check())
+            window.Zhihu = {
+                name:"{{Auth::user()->name}}",
+                avatar:"{{Auth::user()->avatar}}"
+        }
+        @endif
     </script>
 </head>
 <body>
@@ -63,7 +69,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                <img width="36px" src="{{ Auth::user()->avatar }}">{{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
