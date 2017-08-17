@@ -50,7 +50,13 @@
                                     <strong>个人简介: </strong><span>{{Auth::user()->introduce}}</span>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <a href="/setting"><button type="button" class="btn btn-primary">修改个人信息
+                                    </button>
+                                    </a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

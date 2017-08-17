@@ -70,10 +70,10 @@
                         <i class="fa fa-pencil"></i>{{Auth::user()->name}}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dLabel">
-                                <li><a href="/avatar"> <i class="fa fa-user"></i> 更换头像</a></li>
-                                <li><a href="#"> <i class="fa fa-cog"></i> 更换密码</a></li>
-                                <li><a href="/user/my_discussions"> <i class="fa fa-pencil"></i> 我的帖子</a></li>
-                                <li><a href="/user/my_comments"> <i class="fa fa-comment"></i> 我的评论</a></li>
+                                <li><a href="/page"> <i class="fa fa-user"></i> 个人信息</a></li>
+                                <li><a href="/password"> <i class="fa fa-cog"></i> 更换密码</a></li>
+                                <li><a href="#"> <i class="fa fa-pencil"></i> 我的帖子</a></li>
+                                <li><a href="#"> <i class="fa fa-comment"></i> 我的评论</a></li>
                                 <li><a href="#"> <i class="fa fa-heart"></i> 特别感谢</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li> <a href="/logout">  <i class="fa fa-sign-out"></i> 退出登录</a></li>

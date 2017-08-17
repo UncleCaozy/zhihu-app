@@ -22,7 +22,7 @@
                             <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                                 <label for="city" class="col-md-4 control-label">居住地</label>
                                 <div class="col-md-6">
-                                    <input id="city" type="text" class="form-control" name="city" required autofocus>
+                                    <input id="city" type="text" class="form-control" name="city" value="{{Auth::user()->city}}" required autofocus>
                                     @if ($errors->has('city'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('city') }}</strong>
@@ -33,7 +33,7 @@
                             <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
                                 <label for="tel" class="col-md-4 control-label">TEL</label>
                                 <div class="col-md-6">
-                                    <input id="tel" type="text" class="form-control" name="tel" required autofocus>
+                                    <input id="tel" type="text" class="form-control" name="tel" value="{{Auth::user()->tel}}" required autofocus>
                                     @if ($errors->has('tel'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('tel') }}</strong>
@@ -44,7 +44,7 @@
                             <div class="form-group{{ $errors->has('love') ? ' has-error' : '' }}">
                                 <label for="love" class="col-md-4 control-label">爱好</label>
                                 <div class="col-md-6">
-                                    <input id="love" type="text" class="form-control" name="love" required autofocus>
+                                    <input id="love" type="text" class="form-control" name="love" value="{{Auth::user()->love}}" required autofocus>
                                     @if ($errors->has('love'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('love') }}</strong>
@@ -55,7 +55,7 @@
                             <div class="form-group{{ $errors->has('page') ? ' has-error' : '' }}">
                                 <label for="page" class="col-md-4 control-label">主页</label>
                                 <div class="col-md-6">
-                                    <input id="page" type="text" class="form-control" name="page" required autofocus>
+                                    <input id="page" type="text" class="form-control" name="page" value="{{Auth::user()->page}}" required autofocus>
                                     @if ($errors->has('page'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('page') }}</strong>
@@ -66,7 +66,7 @@
                             <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
                                 <label for="job" class="col-md-4 control-label">职业</label>
                                 <div class="col-md-6">
-                                    <input id="job" type="text" class="form-control" name="job" required autofocus>
+                                    <input id="job" type="text" class="form-control" name="job" value="{{Auth::user()->job}}" required autofocus>
                                     @if ($errors->has('job'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('job') }}</strong>
@@ -78,7 +78,7 @@
                             <div class="form-group{{ $errors->has('introduce') ? ' has-error' : '' }}">
                                 <label for="introduce" class="col-md-4 control-label">个人简介</label>
                                 <div class="col-md-6">
-                                    <input id="introduce" type="text" class="form-control" name="introduce" required>
+                                    <input id="introduce" type="text" class="form-control" name="introduce" value="{{Auth::user()->introduce}}" required>
                                     @if ($errors->has('introduce'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('introduce') }}</strong>
