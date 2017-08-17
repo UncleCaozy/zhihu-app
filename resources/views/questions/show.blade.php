@@ -1,6 +1,6 @@
 @extends('layouts.app')
+@include('vendor.ueditor.assets')
 @section('content')
-    @include('vendor.ueditor.assets')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
@@ -106,7 +106,7 @@
                             <div class="media">
                                 <div class="media-body">
                                     <a href="">
-                                        <img width="36" src="{{$answer->user->avatar}}" alt="{{$answer->user->name}}">
+                                        <img width="36" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">
                                     </a>
                                     <h4 class="media-heading">
                                         <a href="">
@@ -140,20 +140,5 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-           var ue = UE.getEditor('container',{
-                    toolbars: [
-                             ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft','justifycenter', 'justifyright',  'link', 'insertimage', 'fullscreen']
-                    ],
-                    elementPathEnabled: false,
-                    enableContextMenu: false,
-                    autoClearEmptyNode:true,
-                    wordCount:false,
-                    imagePopup:false,
-                    autotypeset:{ indent: true,imageBlockLine: 'center' }
-                                });
-                    ue.ready(function() {
-                    ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
-                    });
-    </script>
+    <script src="/js/app.js"></script>
 @endsection

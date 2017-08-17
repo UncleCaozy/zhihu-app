@@ -18,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password','avatar','confirmation_token','settings','api_token',
+        'job','introduce','page','love','tel','city'
     ];
 
     /**
@@ -28,6 +29,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
 
 
     /**申明一个用户可以有多个回答*/

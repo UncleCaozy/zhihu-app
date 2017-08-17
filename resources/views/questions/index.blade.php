@@ -17,6 +17,7 @@
                                     {{$question->title}}
                                 </a>
                             </h4>
+                            <hr>
                         </div>
                     </div>
                 @endforeach
