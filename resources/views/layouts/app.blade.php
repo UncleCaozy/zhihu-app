@@ -66,27 +66,21 @@
                         <li><a href="{{ url('/login') }}">登 陆</a></li>
                         <li><a href="{{ url('/register') }}">注 册</a></li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                                <img width="36px" src="{{ Auth::user()->avatar }}">{{ Auth::user()->name }} <span class="caret"></span>
+                        <li><a id="dlable" type="button" data-toggle="dropdown">
+                        <i class="fa fa-pencil"></i>{{Auth::user()->name}}
                             </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}"
-                                       onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                                        退出
-                                    </a>
-
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
+                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                <li><a href="/avatar"> <i class="fa fa-user"></i> 更换头像</a></li>
+                                <li><a href="#"> <i class="fa fa-cog"></i> 更换密码</a></li>
+                                <li><a href="/user/my_discussions"> <i class="fa fa-pencil"></i> 我的帖子</a></li>
+                                <li><a href="/user/my_comments"> <i class="fa fa-comment"></i> 我的评论</a></li>
+                                <li><a href="#"> <i class="fa fa-heart"></i> 特别感谢</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li> <a href="/logout">  <i class="fa fa-sign-out"></i> 退出登录</a></li>
                             </ul>
                         </li>
+                        <li><img src="{{Auth::user()->avatar}}" class="img-circle" width="40" height="40"></li>
+
                     @endif
                 </ul>
             </div>
@@ -99,9 +93,7 @@
 </div>
 
 <!-- Scripts -->
-<script>
-    $('#flash-overlay-modal').modal();
-</script>
+
 <script type="text/javascript">
     var ue = UE.getEditor('container',{
         toolbars: [
@@ -117,6 +109,9 @@
     ue.ready(function() {
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
     });
+</script>
+<script>
+    $('#flash-overlay-modal').modal();
 </script>
 </body>
 </html>

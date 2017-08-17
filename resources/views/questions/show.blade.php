@@ -16,13 +16,10 @@
                         {!! $question->body !!}
                     </div>
                     <div class="actions">
-                        <button class="btn btn-mini" type="button">
                             <comments type="question"
                                           model="{{$question->id}}"
                                           count="{{$question->comments()->count()}}">
                             </comments>
-                        </button>
-
                         <hr>
                         @if(Auth::check() && Auth::user()->owns($question))
                             <span class="edit">

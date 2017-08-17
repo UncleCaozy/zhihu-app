@@ -39,7 +39,7 @@ class QuestionRepository
     }
     public function getQuestionsFeed()
     {
-        return Question::published()->latest('updated_at')->with('user')->get();
+        return Question::published()->latest('updated_at')->with('user')->paginate(3);
     }
 
     public function GetQuestionCommnetById($id)
