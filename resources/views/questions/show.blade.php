@@ -10,6 +10,19 @@
                         @foreach($question->topics as $topics)
                             <a class="topic">{{$topics->name}}</a>
                         @endforeach
+                        <div class="bdsharebuttonbox pull-right">
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+                        <script>
+                            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},
+                                "share":{},"image":{"viewList":["tsina","weixin"],
+                                    "viewText":"分享到：","viewSize":"16"},
+                                "selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin"]}};
+                            with(document)0[(getElementsByTagName('head')[0]||body)
+                                .appendChild(createElement('script'))
+                                .src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                        </script>
                             <br>
                         <h2><strong>{{$question->title}}</strong></h2>
                     </div>
@@ -139,6 +152,7 @@
                     @endif
                 </div>
             </div>
+
         </div>
     </div>
     <script src="/js/app.js"></script>

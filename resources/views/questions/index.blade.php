@@ -20,13 +20,12 @@
                                 <a href="/questions/{{$question->id}}">
 
                                     <strong>{{$question->title}}</strong>
-     st                         </a>
+                                </a>
                             </h4>
                                     <comments type="question"
                                               model="{{$question->id}}"
                                               count="{{$question->comments()->count()}}">
                                     </comments>
-                            <span class="label label-success">分享</span>
                             <hr>
                         </div>
                     </div>
