@@ -2,9 +2,9 @@
     <ul class="pagination">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">首页</span></li>
         @else
-            <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">上一页</a></li>
         @endif
 
         {{-- Pagination Elements --}}

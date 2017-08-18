@@ -34,29 +34,29 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse">
         <div class="container">
             <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+                    </li>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">发现</a></li>
+                    <li><a href="#">话题</a></li>
+                    <li>
+                        <form class="navbar-search pull-left">
+                            <input type="text" class="search-query" placeholder="Search" style="margin-top: 8px;">
+                            <button type="submit" class="btn btn-primary">搜索</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
+                <ul class="nav navbar-nav navbar-left">
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -66,6 +66,7 @@
                         <li><a href="{{ url('/login') }}">登 陆</a></li>
                         <li><a href="{{ url('/register') }}">注 册</a></li>
                     @else
+                        <li><a href="/notifications"> <i class="fa fa-bell"></i> 消息中心</a></li>
                         <li><a id="dlable" type="button" data-toggle="dropdown">
                         <i class="fa fa-pencil"></i>{{Auth::user()->name}}
                             </a>
@@ -74,13 +75,12 @@
                                 <li><a href="/password"> <i class="fa fa-cog"></i> 更换密码</a></li>
                                 <li><a href="#"> <i class="fa fa-pencil"></i> 我的帖子</a></li>
                                 <li><a href="#"> <i class="fa fa-comment"></i> 我的评论</a></li>
-                                <li><a href="#"> <i class="fa fa-heart"></i> 特别感谢</a></li>
+                                <li><a href="/inbox"> <i class="fa fa-comments"></i> 私信列表</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li> <a href="/logout">  <i class="fa fa-sign-out"></i> 退出登录</a></li>
                             </ul>
                         </li>
-                        <li><img src="{{Auth::user()->avatar}}" class="img-circle" width="40" height="40"></li>
-
+                        <li><img src="{{Auth::user()->avatar}}" class="img-circle" width="30" height="30" style="margin-top: 8px;"></li>
                     @endif
                 </ul>
             </div>

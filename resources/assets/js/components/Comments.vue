@@ -24,9 +24,10 @@
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">{{comment.user.name}}</h4>
+                                    <h4 class="media-heading">{{comment.user.name}}<span class="pull-right">{{comment.updated_at}}</span></h4>
                                     {{comment.body}}
                                 </div>
+                                <hr>
                             </div>
                         </div>
                     </div>
@@ -61,7 +62,7 @@
                 return '#'+this.dialog
             },
             text(){
-                return this.count+'评论'
+                return this.count+'条评论'
             }
         },
         methods:{

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\AdRepository;
 use Illuminate\Http\Request;
+use App\Ad;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Repositories\QuestionRepository;
@@ -15,6 +17,7 @@ class QuestionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $questionRepository;
+    protected $adRepository;
 
 
 
@@ -25,8 +28,9 @@ class QuestionsController extends Controller
     }
     public function index()
     {
+        $ad = Ad::first();
         $questions = $this->questionRepository->getQuestionsFeed();
-        return view('questions.index',compact('questions'));
+        return view('questions.index',compact('questions','ad'));
     }
 
     /**
@@ -67,7 +71,8 @@ class QuestionsController extends Controller
     public function show($id)
     {
         $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
-        return view('questions.show',compact('question'));
+        $ad = Ad::first();
+        return view('questions.show',compact('question','ad'));
     }
 
     /**

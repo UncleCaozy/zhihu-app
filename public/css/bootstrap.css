@@ -6754,4 +6754,25 @@ button.close {
     display: none !important;
   }
 }
+.navbar-search .search-query {
+  padding: 4px 14px;
+  margin-bottom: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+input.search-query {
+  padding-right: 14px;
+  padding-right: 4px \9;
+  padding-left: 14px;
+  padding-left: 4px \9;
+  margin-bottom: 0;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
 /*# sourceMappingURL=bootstrap.css.map */

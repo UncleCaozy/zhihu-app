@@ -62,3 +62,29 @@ a.topic:hover {
 .notifications.unread{
     background: #fff9ca;
 }
+.col-md-4 i.fa-leanpub{
+    font-size: 20px;
+    color: #00a0e9;
+}
+.col-md-4 i.fa-paper-plane{
+    font-size: 20px;
+    color: #2ab27b;
+}
+.col-md-4 i.fa-address-book{
+    font-size: 20px;
+    color: #000000;
+}
+.col-md-4 i.fa-pencil{
+    font-size: 20px;
+    color: #a94442;
+}
+.col-md-4 i.fa-keyboard-o{
+    font-size: 20px;
+    color: #2ab27b;
+}
+.col-md-4 i.fa-jpy{
+    font-size: 20px;
+    color: #a94442;
+}
+.col-md-4{
+    margin-top:15px;}

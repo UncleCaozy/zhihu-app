@@ -40,6 +40,10 @@ Route::get('setting','SettingController@index');
 Route::get('page','SettingController@page');
 Route::post('setting','SettingController@store');
 
+
+Route::get('publish_ad','PublishAdController@index');
+Route::post('publish_ad','PublishAdController@publish_ad');
+
 Route::get('inbox','InboxController@index');
 Route::get('inbox/{dialogId}','InboxController@show');
 Route::post('inbox/{dialogId}/store','InboxController@store');
