@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
                 @foreach($questions as $question)
+                    @if($question->is_hidden=='F')
                     <div class="media">
                         <strong>来自话题：</strong>
                         @foreach($question->topics as $topics)
@@ -17,18 +18,21 @@
                         </div>
                         <div class="media-body">
                             <h4 class="media-heading">
-                                <a href="/questions/{{$question->id}}">
-
+                                <a style="text-decoration:none" href="/questions/{{$question->id}}">
                                     <strong>{{$question->title}}</strong>
                                 </a>
                             </h4>
-                                    <comments type="question"
-                                              model="{{$question->id}}"
-                                              count="{{$question->comments()->count()}}">
-                                    </comments>
+                            @foreach($question->answers as $answer)
+                                @if($answer->votes_count==1)
+                                    <a style="color: #0f0f0f;text-decoration:none" href="/questions/{{$question->id}}">{!! $answer->body !!} <i class="fa fa-thumbs-up"></i> {{$answer->votes_count}}</a>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a style="color: #0f0f0f;text-decoration:none" href="/questions/{{$question->id}}"><i class="fa fa-comments"></i> {{$answer->comments_count}}条评论</a>
+                                @endif
+                            @endforeach
                             <hr>
                         </div>
                     </div>
+                    @endif
                 @endforeach
                 {{$questions->links()}}
             </div>

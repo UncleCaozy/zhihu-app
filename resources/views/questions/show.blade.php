@@ -30,10 +30,12 @@
                         {!! $question->body !!}
                     </div>
                     <div class="actions">
+                        @if($question->close_comment=='F')
                             <comments type="question"
                                           model="{{$question->id}}"
                                           count="{{$question->comments()->count()}}">
                             </comments>
+                        @endif
                         <hr>
                         @if(Auth::check() && Auth::user()->owns($question))
                             <span class="edit">
@@ -46,6 +48,28 @@
                                 {{csrf_field()}}
                                 <button class="button is-naked delete-button">删除</button>
                             </form>
+                            @if($question->close_comment =='F')
+                            <form action="/questions/{{$question->id}}/close" method="POST" class="delete-form">
+                                {{csrf_field()}}
+                                <button class="button is-naked delete-button">关闭评论</button>
+                            </form>
+                                @else
+                                <form action="/questions/{{$question->id}}/open" method="POST" class="delete-form">
+                                    {{csrf_field()}}
+                                    <button class="button is-naked delete-button">打开评论</button>
+                                </form>
+                            @endif
+                                @if($question->is_hidden=='F')
+                                    <form action="/questions/{{$question->id}}/question_hidden" method="POST" class="delete-form">
+                                        {{csrf_field()}}
+                                        <button class="button is-naked delete-button">关闭问题</button>
+                                    </form>
+                                @else
+                                    <form action="/questions/{{$question->id}}/question_open" method="POST" class="delete-form">
+                                        {{csrf_field()}}
+                                        <button class="button is-naked delete-button">打开问题</button>
+                                    </form>
+                                @endif
                         @endif
                     </div>
                 </div>

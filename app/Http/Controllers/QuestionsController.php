@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use App\Repositories\AdRepository;
 use Illuminate\Http\Request;
 use App\Ad;
@@ -121,6 +122,50 @@ class QuestionsController extends Controller
         if (Auth::user()->owns($question)){
             $question->delete();
             return redirect('/');
+        }
+        abort(403,'Forbidden');
+    }
+
+    public function close_comment($id)
+    {
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)){
+        $question->close_comment = 'T';
+        $question->save();
+            return back();
+        }
+        abort(403,'Forbidden');
+    }
+
+    public function open_comment($id)
+    {
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)){
+            $question->close_comment = 'F';
+            $question->save();
+            return back();
+        }
+        abort(403,'Forbidden');
+    }
+
+    public function question_hidden($id)
+    {
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)){
+            $question->is_hidden = 'T';
+            $question->save();
+            return back();
+        }
+        abort(403,'Forbidden');
+    }
+
+    public function question_open($id)
+    {
+        $question = $this->questionRepository->byId($id);
+        if (Auth::user()->owns($question)){
+            $question->is_hidden = 'F';
+            $question->save();
+            return back();
         }
         abort(403,'Forbidden');
     }

@@ -21,6 +21,14 @@ Route::resource('questions', 'QuestionsController',['name'=>[
     'create'=>'questions.make',
     'show'=>'questions.show',
 ]]);
+
+Route::post('questions/{question}/close','QuestionsController@close_comment');
+Route::post('questions/{question}/open','QuestionsController@open_comment');
+
+Route::post('questions/{question}/question_hidden','QuestionsController@question_hidden');
+Route::post('questions/{question}/question_open','QuestionsController@question_open');
+
+
 Route::post('questions/{question}/answer','AnswersController@store');
 
 Route::get('question/{question}/follow','QuestionFollowController@follow');
