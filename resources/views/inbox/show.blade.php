@@ -26,6 +26,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        {{$messages->links()}}
                             <form action="/inbox/{{$dialogId}}/store" method="post">
                                 {{csrf_field()}}
                                 <div class="form-group">

@@ -51,11 +51,14 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    登陆
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     忘记密码？
+                                </a>
+                                <a class="btn btn-link" href="{{ url('/another/login') }}">
+                                    使用Github账号登陆
                                 </a>
                             </div>
                         </div>

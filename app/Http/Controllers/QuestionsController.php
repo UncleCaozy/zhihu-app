@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Answer;
-use App\Repositories\AdRepository;
-use Illuminate\Http\Request;
+use App\Qt;
 use App\Ad;
+use App\Question;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Repositories\QuestionRepository;
@@ -168,6 +167,13 @@ class QuestionsController extends Controller
             return back();
         }
         abort(403,'Forbidden');
+    }
+
+    public function get_q_by_t($topic)
+    {
+        $questions = Question::all();
+        $que_tops = Qt::where('topic_id',$topic)->get();
+        return view('topics.questions_by_topic',compact('que_tops','questions'));
     }
 
 }

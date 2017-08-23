@@ -29,7 +29,7 @@ class MessageRepository
 
     public function showDialog($dialogId)
     {
-        return Message::where('dialog_id',$dialogId)->get();
+        return Message::where('dialog_id',$dialogId)->latest()->paginate(5);
     }
 
 

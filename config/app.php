@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => '大头律师事务所',
+    'name' => '虎扑',
 
     /*
     |--------------------------------------------------------------------------

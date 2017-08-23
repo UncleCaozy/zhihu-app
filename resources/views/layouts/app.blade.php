@@ -41,9 +41,9 @@
                     <li>
                         <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
                     </li>
-                    <li><a href="#">首页</a></li>
+                    <li><a href="/">首页</a></li>
                     <li><a href="#">发现</a></li>
-                    <li><a href="#">话题</a></li>
+                    <li><a href="/topics">话题</a></li>
                     <li>
                         <form class="navbar-search pull-left">
                             <input type="text" class="search-query" placeholder="Search" style="margin-top: 8px;">
@@ -73,11 +73,21 @@
                             <ul class="dropdown-menu" aria-labelledby="dLabel">
                                 <li><a href="/page"> <i class="fa fa-user"></i> 个人信息</a></li>
                                 <li><a href="/password"> <i class="fa fa-cog"></i> 更换密码</a></li>
-                                <li><a href="#"> <i class="fa fa-pencil"></i> 我的帖子</a></li>
-                                <li><a href="#"> <i class="fa fa-comment"></i> 我的评论</a></li>
+                                <li><a href="/users/my_questions"> <i class="fa fa-pencil"></i> 我的问题</a></li>
+                                <li><a href="/users/my_followed_questions"> <i class="fa fa-heart"></i> 我的关注</a></li>
                                 <li><a href="/inbox"> <i class="fa fa-comments"></i> 私信列表</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li> <a href="/logout">  <i class="fa fa-sign-out"></i> 退出登录</a></li>
+                                <li>
+                                    <a href="{{ url('/logout') }}"
+                                       onclick="event.preventDefault();
+                                                             document.getElementById('logout-form').submit();">
+                                        退出登陆
+                                    </a>
+
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                         <li><img src="{{Auth::user()->avatar}}" class="img-circle" width="30" height="30" style="margin-top: 8px;"></li>

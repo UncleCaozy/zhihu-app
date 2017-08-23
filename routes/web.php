@@ -13,6 +13,10 @@
 
 Route::get('/', 'QuestionsController@index');
 
+
+Route::get('/another/login', 'LoginController@github');
+Route::get('/github/login', 'LoginController@githubLogin');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -29,7 +33,15 @@ Route::post('questions/{question}/question_hidden','QuestionsController@question
 Route::post('questions/{question}/question_open','QuestionsController@question_open');
 
 
+Route::get('users/my_questions','UsersController@my_questions');
+Route::get('users/my_followed_questions','UsersController@questions_followed');
+
 Route::post('questions/{question}/answer','AnswersController@store');
+Route::post('answers/{answer}/answer/update','AnswersController@update');
+Route::get('answers/{answer}/edit','AnswersController@edit');
+Route::post('answers/{answer}/hidden','AnswersController@hidden');
+Route::post('answers/{answer}/close_comment','AnswersController@close_comment');
+Route::post('answers/{answer}/open_comment','AnswersController@open_comment');
 
 Route::get('question/{question}/follow','QuestionFollowController@follow');
 Route::get('question/{question}/unfollow','QuestionFollowController@unfollow');
@@ -55,3 +67,7 @@ Route::post('publish_ad','PublishAdController@publish_ad');
 Route::get('inbox','InboxController@index');
 Route::get('inbox/{dialogId}','InboxController@show');
 Route::post('inbox/{dialogId}/store','InboxController@store');
+
+Route::get('topics','TopicsController@index');
+Route::get('{topic}/questions/','QuestionsController@get_q_by_t');
+

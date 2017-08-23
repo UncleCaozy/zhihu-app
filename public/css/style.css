@@ -14,12 +14,12 @@ a.topic {
     align:right;
 }
 
+
 a.topic:hover {
     background: #259;
     color: #fff;
     text-decoration: none;
 }
-
 
 .button.is-naked{
     background: 0 0;

@@ -56,7 +56,7 @@
                                 @else
                                 <form action="/questions/{{$question->id}}/open" method="POST" class="delete-form">
                                     {{csrf_field()}}
-                                    <button class="button is-naked delete-button">打开评论</button>
+                                    <button class="button is-naked delete-button">开放评论</button>
                                 </form>
                             @endif
                                 @if($question->is_hidden=='F')
@@ -137,6 +137,7 @@
                     </div>
                     <div class="panel-body">
                         @foreach($question->answers as $answer)
+                            @if($answer->is_hidden == 'F')
                             <div class="media">
                                 <div class="media-left">
                                     <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
@@ -148,12 +149,39 @@
                                         </a>
                                     </h4>
                                     {!!$answer->body!!}
+                                    @if(Auth::check() && Auth::user()->owns($answer))
+                                        @if($answer->close_comment =='F')
+                                            <form action="/answers/{{$answer->id}}/close_comment" method="POST" class="delete-form pull-right">
+                                                {{csrf_field()}}
+                                                <button class="button is-naked delete-button">关闭评论</button>
+                                            </form>
+                                        @else
+                                            <form action="/answers/{{$answer->id}}/open_comment" method="POST" class="delete-form pull-right">
+                                                {{csrf_field()}}
+                                                <button class="button is-naked delete-button">开放评论</button>
+                                            </form>
+                                        @endif
+                                        @if($answer->is_hidden =='F')
+                                        <form action="/answers/{{$answer->id}}/hidden" method="POST" class="delete-form pull-right">
+                                            {{csrf_field()}}
+                                            <button class="button is-naked delete-button">删除答案</button>
+                                        </form>
+                                        @endif
+                                        <span class="edit pull-right">
+                                                <a href="/answers/{{$answer->id}}/edit">
+                                                编辑
+                                                </a>
+                                        </span>
+                                    @endif
                                 </div>
+                                @if($answer->close_comment=='F')
                                 <comments type="answer"
                                           model="{{$answer->id}}"
                                           count="{{$answer->comments()->count()}}">
                                 </comments>
+                                @endif
                             </div>
+                            @endif
                         @endforeach
                     </div>
                     @if(Auth::check())
