@@ -13,7 +13,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', '知乎') }}</title>
+    <title>{{ config('app.name', '社区') }}</title>
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
